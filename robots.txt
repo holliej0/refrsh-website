@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://getrefrsh.com/sitemap.xml
