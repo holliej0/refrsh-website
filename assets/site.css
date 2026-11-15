@@ -284,10 +284,9 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 .checklist { list-style: none; margin: 0; padding: 0; }
 .checklist li { padding: 16px 0 16px 44px; border-top: 1px solid var(--line); position: relative; font-size: 18px; }
 .checklist li:first-child { border-top: 0; }
-.checklist li::before { content: ""; position: absolute; left: 0; top: 17px; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); }
-.checklist li::after { content: ""; position: absolute; left: 8px; top: 23px; width: 10px; height: 6px; border-left: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); transform: rotate(-45deg); }
+.checklist li::before { content: ""; position: absolute; left: 0; top: calc(16px + 0.8em - 13px); width: 26px; height: 26px; border-radius: 50%; background-color: var(--teal); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.4l2.9 2.9 6.1-6.3' fill='none' stroke='%23111111' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 14px 14px; }
 .band--yellow .checklist li { border-color: rgba(17,17,17,.15); }
-.band--yellow .checklist li::before { background: var(--white); }
+.band--yellow .checklist li::before { background-color: var(--white); }
 
 /* ---------- Values row ---------- */
 .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
