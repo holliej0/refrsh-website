@@ -32,36 +32,41 @@
   // Contact form
   var form = document.getElementById("contact-form");
   if (form) {
+    var status = document.getElementById("form-status");
+    var button = form.querySelector('button[type="submit"]');
+    var show = function (msg) { status.textContent = msg; status.classList.add("show"); };
+
+    // Shown after the no-JavaScript fallback redirects back here
+    if (/[?&]sent=1/.test(location.search)) show("Thanks. We got your note and will reply within one business day.");
+
     form.addEventListener("submit", function (ev) {
-      var endpoint = form.getAttribute("data-endpoint");
-      if (endpoint) {
-        ev.preventDefault();
-        var status = document.getElementById("form-status");
-        fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-          .then(function (r) {
-            if (!r.ok) throw new Error("bad");
-            form.reset();
-            status.textContent = "Thanks. We got your note and will reply within one business day.";
-            status.classList.add("show");
-          })
-          .catch(function () {
-            status.textContent = "Something went wrong. Please email us directly at hello@getrefrsh.com.";
-            status.classList.add("show");
-          });
-        return;
-      }
-      // No form service connected yet: open an email draft instead.
       ev.preventDefault();
-      var d = new FormData(form);
-      var body =
-        "Name: " + (d.get("name") || "") + "\n" +
-        "Company: " + (d.get("company") || "") + "\n" +
-        "Email: " + (d.get("email") || "") + "\n" +
-        "Website: " + (d.get("website") || "") + "\n\n" +
-        (d.get("message") || "");
-      window.location.href = "mailto:hello@getrefrsh.com?subject=" +
-        encodeURIComponent("Inquiry from " + (d.get("company") || d.get("name") || "the website")) +
-        "&body=" + encodeURIComponent(body);
+      if (!form.reportValidity()) return;
+      if (form.elements._honey && form.elements._honey.value) return; // likely spam
+
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      data._replyto = data.email;
+
+      button.disabled = true;
+      var label = button.textContent;
+      button.textContent = "Sending...";
+      status.classList.remove("show");
+
+      fetch(form.getAttribute("data-endpoint"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) === "false") throw new Error(j.message || "failed"); }); })
+        .then(function () {
+          form.reset();
+          show("Thanks. We got your note and will reply within one business day.");
+        })
+        .catch(function () {
+          show("Sorry, something went wrong sending your message. Please email us at hello@getrefrsh.com.");
+        })
+        .then(function () { button.disabled = false; button.textContent = label; });
     });
   }
 })();

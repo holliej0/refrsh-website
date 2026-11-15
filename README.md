@@ -9,6 +9,6 @@ Static site for getrefrsh.com. Plain HTML and CSS, hosted on GitHub Pages.
 
 ## Contact form
 hello@getrefrsh.com forwards to Gmail through Namecheap email forwarding.
-The form opens an email draft to that address until a form service is connected.
-To use a form service (for example Formspree), paste its endpoint URL into
-`data-endpoint=""` on the form in contact.html.
+The contact form posts to FormSubmit (formsubmit.co), which emails each
+submission to hello@getrefrsh.com. The first submission triggers a one-time
+activation email that must be confirmed before messages are delivered.

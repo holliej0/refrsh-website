@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -79,7 +79,11 @@
         <dt>Based in</dt><dd>New Jersey</dd>
       </dl>
     </aside>
-    <form class="form" id="contact-form" data-endpoint="" novalidate>
+    <form class="form" id="contact-form" action="https://formsubmit.co/hello@getrefrsh.com" method="POST" data-endpoint="https://formsubmit.co/ajax/hello@getrefrsh.com" novalidate>
+      <input type="hidden" name="_subject" value="New inquiry from getrefrsh.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://getrefrsh.com/contact.html?sent=1">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-row">
         <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization" required></div>
@@ -130,6 +134,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/site.js?v=2" defer></script>
+<script src="assets/site.js?v=3" defer></script>
 </body>
 </html>
