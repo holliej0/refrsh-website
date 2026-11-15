@@ -227,9 +227,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 /* ---------- Team ---------- */
 .team { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .person { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
-.person .art { height: 200px; position: relative; overflow: hidden; }
+.person .art { height: 240px; position: relative; overflow: hidden; }
 .person .art svg { width: 100%; height: 100%; }
-.person .art .initial { position: absolute; left: 32px; bottom: 24px; width: 84px; height: 84px; border-radius: 50%; background: var(--white); display: grid; place-items: center; font-size: 40px; font-weight: 800; box-shadow: 0 6px 18px rgba(17,17,17,.12); }
+.person .art .photo { position: absolute; left: 32px; bottom: 28px; width: 164px; height: 164px; border-radius: 50%; object-fit: cover; border: 6px solid var(--white); box-shadow: 0 8px 22px rgba(17,17,17,.16); background: var(--white); }
+@media (max-width: 560px) { .person .art { height: 200px; } .person .art .photo { width: 136px; height: 136px; left: 24px; bottom: 24px; } }
 .person .content { padding: 28px 32px 32px; }
 .person h3 { font-size: 30px; line-height: 1.2; }
 .person .role { font-size: 16px; font-weight: 600; color: var(--purple); margin: 6px 0 16px; }
