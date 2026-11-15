@@ -4,6 +4,8 @@
   var nav = document.getElementById("site-nav");
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
+      var hdr = document.querySelector(".site-header");
+      if (hdr) nav.style.setProperty("--nav-top", Math.round(hdr.getBoundingClientRect().bottom) + "px");
       var open = nav.classList.toggle("open");
       document.body.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
